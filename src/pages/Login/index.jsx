@@ -27,6 +27,11 @@ function Login() {
     <div className="body">
       <form onSubmit={handleSubmit}>
         <div className="form-inputs">
+          {error && (
+            <div className="error">
+              <p>{error}</p>
+            </div>
+          )}
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -48,7 +53,7 @@ function Login() {
             required
           />
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+
         <button type="submit">Submit</button>
       </form>
     </div>

@@ -56,3 +56,11 @@ button {
 button:hover {
   background-color: #4f4794;
 }
+.error {
+  text-align: center;
+  border: 1px solid red;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #dcc6c6;
+  color: red;
+}
