@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./style.css";
-
+import { Link } from "react-router-dom";
 import moon from "../../images/moon.png";
 import stars from "../../images/stars.png";
 import mountainsBehind from "../../images/mountains_behind.png";
@@ -50,7 +50,7 @@ const Home = () => {
             </a>
           </li>
           <li>
-            <a href="#">Login</a>
+            <Link to="login">Login</Link>
           </li>
           <li>
             <a href="#">SignUp</a>
