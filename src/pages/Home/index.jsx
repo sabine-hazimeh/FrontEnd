@@ -53,7 +53,7 @@ const Home = () => {
             <Link to="login">Login</Link>
           </li>
           <li>
-            <a href="#">SignUp</a>
+            <Link to="signUp">SignUp</Link>
           </li>
         </ul>
       </header>

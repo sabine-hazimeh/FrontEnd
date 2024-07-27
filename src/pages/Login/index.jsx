@@ -17,8 +17,7 @@ function Login() {
 
       const token = response.data.authorisation.token;
       localStorage.setItem("token", token);
-
-      window.location.href = "/chats";
+      window.location.href = "/";
     } catch (error) {
       setError("Invalid email or password");
     }
