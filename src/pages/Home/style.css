@@ -18,7 +18,7 @@ body {
   overflow-x: hidden;
 }
 
-header {
+/* header {
   position: absolute;
   top: 0;
   left: 0;
@@ -61,7 +61,7 @@ header ul li a:hover,
 .active {
   background: #fff;
   color: #2b1055;
-}
+} */
 
 section {
   position: relative;

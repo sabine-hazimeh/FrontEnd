@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaChevronRight } from "react-icons/fa";
+import { FaChevronRight, FaPaperPlane } from "react-icons/fa";
 import "./style.css";
 
 function Chats() {
   const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [messageText, setMessageText] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -19,20 +22,106 @@ function Chats() {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    if (selectedUser) {
+      const fetchMessages = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await axios.get(
+            `http://127.0.0.1:8000/api/chats/messages/${selectedUser.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setMessages(response.data);
+        } catch (error) {
+          console.error("There was an error fetching messages!", error);
+        }
+      };
+
+      fetchMessages();
+    }
+  }, [selectedUser]);
+
+  const handleUserClick = (user) => {
+    setSelectedUser(user);
+  };
+
+  const handleSendMessage = async () => {
+    if (messageText.trim() === "" || !selectedUser) return;
+
+    try {
+      const token = localStorage.getItem("token");
+      await axios.post(
+        "http://127.0.0.1:8000/api/chats",
+        {
+          receiver_id: selectedUser.id,
+          message: messageText,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setMessageText("");
+
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/chats/messages/${selectedUser.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setMessages(response.data);
+    } catch (error) {
+      console.error("There was an error sending the message!", error);
+    }
+  };
+
   return (
     <div className="chat-container">
       <ul className="user-list">
         {users.map((user) => (
-          <li key={user.id} className="users">
+          <li
+            key={user.id}
+            className="users"
+            onClick={() => handleUserClick(user)}
+          >
             {user.name} <FaChevronRight className="arrow-icon" />
           </li>
         ))}
       </ul>
-      <div className="chat-area">
-        <div className="message-input">
-          <input type="text" placeholder="Write your messages here" />
+      {selectedUser && (
+        <div className="chat-area">
+          <div className="message-list">
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`message ${
+                  msg.sender_id === selectedUser.id ? "received" : "sent"
+                }`}
+              >
+                {msg.message}
+              </div>
+            ))}
+          </div>
+          <div className="message-input">
+            <input
+              type="text"
+              value={messageText}
+              onChange={(e) => setMessageText(e.target.value)}
+              placeholder="Write your messages here"
+            />
+            <button onClick={handleSendMessage} className="send-button">
+              <FaPaperPlane />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
