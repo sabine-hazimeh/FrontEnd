@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
+
 import moon from "../../images/moon.png";
 import stars from "../../images/stars.png";
 import mountainsBehind from "../../images/mountains_behind.png";
@@ -13,7 +13,6 @@ const Home = () => {
   const mountainsBehindRef = useRef(null);
   const textRef = useRef(null);
   const btnRef = useRef(null);
-  const headerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,8 +28,6 @@ const Home = () => {
         textRef.current.style.marginRight = value * 4 + "px";
         textRef.current.style.marginTop = value * 1.5 + "px";
       }
-      if (btnRef.current) btnRef.current.style.marginTop = value * 1.5 + "px";
-      if (headerRef.current) headerRef.current.style.top = value * 0.5 + "px";
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -39,25 +36,6 @@ const Home = () => {
 
   return (
     <div>
-      <header ref={headerRef}>
-        <a href="#" className="logo">
-          SyntaxStudio
-        </a>
-        <ul>
-          <li>
-            <a className="active" href="#">
-              Home
-            </a>
-          </li>
-          <li>
-            <Link to="login">Login</Link>
-          </li>
-          <li>
-            <Link to="signUp">SignUp</Link>
-          </li>
-        </ul>
-      </header>
-
       <section>
         <img src={stars} id="stars" ref={starsRef} alt="stars" />
         <img src={moon} id="moon" ref={moonRef} alt="moon" />
