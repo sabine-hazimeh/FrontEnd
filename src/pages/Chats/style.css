@@ -4,6 +4,7 @@
 }
 
 .user-list {
+  margin-top: 5rem;
   width: 30%;
   display: flex;
   flex-direction: column;
