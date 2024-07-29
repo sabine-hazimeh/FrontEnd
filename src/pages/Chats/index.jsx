@@ -24,10 +24,11 @@ function Chats() {
   }, []);
 
   useEffect(() => {
-    if (selectedUser) {
-      const fetchMessages = async () => {
+    const fetchMessages = async () => {
+      if (selectedUser) {
         try {
           const token = localStorage.getItem("token");
+
           const response = await axios.get(
             `http://127.0.0.1:8000/api/chats/messages/${selectedUser.id}`,
             {
@@ -36,14 +37,18 @@ function Chats() {
               },
             }
           );
+
           setMessages(response.data);
         } catch (error) {
-          console.error("There was an error fetching messages!", error);
+          console.error(
+            "There was an error fetching the messages!",
+            error.response || error.message
+          );
         }
-      };
+      }
+    };
 
-      fetchMessages();
-    }
+    fetchMessages();
   }, [selectedUser]);
 
   const handleUserClick = (user) => {
@@ -55,7 +60,7 @@ function Chats() {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.post(
+      const response = await axios.post(
         "http://127.0.0.1:8000/api/chats",
         {
           receiver_id: selectedUser.id,
@@ -67,17 +72,11 @@ function Chats() {
           },
         }
       );
-      setMessageText("");
 
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/chats/messages/${selectedUser.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setMessages(response.data);
+      const newMessage = response.data.chat;
+
+      setMessages([...messages, newMessage]);
+      setMessageText("");
     } catch (error) {
       console.error("There was an error sending the message!", error);
     }

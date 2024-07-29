@@ -19,8 +19,6 @@ function SignUp() {
         email,
         password,
       });
-      // const token = response.data.authorisation.token;
-      // localStorage.setItem("token", token);
       setError("");
       setSubmitted(false);
     } catch (error) {

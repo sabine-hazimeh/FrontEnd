@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Chats from "./pages/Chats";
-import Header from "./pages/Header";
+import Header from "./Component/Header";
 function App() {
   return (
     <Router>
