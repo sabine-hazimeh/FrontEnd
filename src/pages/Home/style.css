@@ -16,6 +16,7 @@ body {
   background: linear-gradient(#2b1055, #7597de);
   min-height: 100vh;
   overflow-x: hidden;
+  /* overflow: hidden; */
 }
 
 /* header {
@@ -71,7 +72,8 @@ section {
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  padding: 100px;
+  /* padding: 100px; */
+  
 }
 
 section::before {
@@ -138,4 +140,15 @@ section img#mountains_front {
 .sec p {
   font-size: 1em;
   color: #fff;
+}
+
+
+/* Example of overriding Chakra UI styles */
+.css-1c27sw4 {
+  min-height: auto !important;
+  background: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border: none !important;
+  background: black;
 }
