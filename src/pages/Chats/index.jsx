@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaChevronRight, FaPaperPlane } from "react-icons/fa";
+import { FaChevronRight, FaPaperPlane, FaSearch } from "react-icons/fa";
 import "./style.css";
 
 function Chats() {
@@ -8,6 +8,7 @@ function Chats() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -23,10 +24,11 @@ function Chats() {
   }, []);
 
   useEffect(() => {
-    if (selectedUser) {
-      const fetchMessages = async () => {
+    const fetchMessages = async () => {
+      if (selectedUser) {
         try {
           const token = localStorage.getItem("token");
+
           const response = await axios.get(
             `http://127.0.0.1:8000/api/chats/messages/${selectedUser.id}`,
             {
@@ -35,14 +37,18 @@ function Chats() {
               },
             }
           );
+
           setMessages(response.data);
         } catch (error) {
-          console.error("There was an error fetching messages!", error);
+          console.error(
+            "There was an error fetching the messages!",
+            error.response || error.message
+          );
         }
-      };
+      }
+    };
 
-      fetchMessages();
-    }
+    fetchMessages();
   }, [selectedUser]);
 
   const handleUserClick = (user) => {
@@ -54,7 +60,7 @@ function Chats() {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.post(
+      const response = await axios.post(
         "http://127.0.0.1:8000/api/chats",
         {
           receiver_id: selectedUser.id,
@@ -66,17 +72,11 @@ function Chats() {
           },
         }
       );
-      setMessageText("");
 
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/chats/messages/${selectedUser.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setMessages(response.data);
+      const newMessage = response.data.chat;
+
+      setMessages([...messages, newMessage]);
+      setMessageText("");
     } catch (error) {
       console.error("There was an error sending the message!", error);
     }
@@ -85,15 +85,28 @@ function Chats() {
   return (
     <div className="chat-container">
       <ul className="user-list">
-        {users.map((user) => (
-          <li
-            key={user.id}
-            className="users"
-            onClick={() => handleUserClick(user)}
-          >
-            {user.name} <FaChevronRight className="arrow-icon" />
-          </li>
-        ))}
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search for users here"
+            className="search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </div>
+        {users
+          .filter((user) =>
+            user.name.toLowerCase().includes(searchText.toLowerCase())
+          )
+          .map((user) => (
+            <li
+              key={user.id}
+              className="users"
+              onClick={() => handleUserClick(user)}
+            >
+              {user.name} <FaChevronRight className="arrow-icon" />
+            </li>
+          ))}
       </ul>
       {selectedUser && (
         <div className="chat-area">
