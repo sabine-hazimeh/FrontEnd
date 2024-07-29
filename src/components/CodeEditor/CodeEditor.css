@@ -14,54 +14,47 @@ section{
     padding: 100px;
 } */
 
-
-
 /* --------------------------------------------- */
-
 
 /* customEditorStyles.css */
 .custom-editor-container {
-    display: flex;
-    height: 100vh; /* Full viewport height */
-    width: 100%;
-    border: 2px solid #ccc; /* Example border */
-    border-radius: 8px; /* Rounded corners */
-    padding: 10px; /* Padding inside the container */
-    background: linear-gradient(#2b1055, #7597de);;
-  }
-  
-  .editor-wrapper {
-    width: 50%;
-  }
-  
-  .language-selector {
-    margin-bottom: 10px; /* Space between selector and editor */
-    width: fit-content;
-    padding: 0.25rem;
-    color: white;
-    
+  display: flex;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  border: 2px solid #ccc; /* Example border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Padding inside the container */
+  background: linear-gradient(#2b1055, #7597de);
+  overflow: hidden;
 }
-  
-  .custom-editor {
-    /* height: calc(100vh - 50px); Adjust the height if you have other elements */
-    height: 75vh;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    
-  }
-  
-  .output-container {
-    width: 50%;
-    padding: 10px;
-    /* margin: 0 3rem; */
-  }
 
-  .lang-button{
-    width: fit-content;
-    padding: 0.25rem;
-    background-color: rgba(28,28,28,255);
-  }
+.editor-wrapper {
+  width: 50%;
+}
 
+.language-selector {
+  margin-bottom: 1.6rem; /* Space between selector and editor */
+  width: fit-content;
+  padding: 0.25rem;
+  color: white;
+}
 
-  
+.custom-editor {
+  /* height: calc(100vh - 50px); Adjust the height if you have other elements */
+  height: 75vh;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.output-container {
+  width: 50%;
+  padding: 10px;
+  /* margin: 0 3rem; */
+}
+
+.lang-button {
+  width: fit-content;
+  padding: 0.25rem;
+  background-color: rgba(28, 28, 28, 255);
+}

@@ -31,7 +31,7 @@ function App() {
       <Router>
         <Box minH="100vh" bg="#0f0a19" color="gray.500" px={6} py={8}>
           <Routes>
-            <Header />
+            {/* <Header /> */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
