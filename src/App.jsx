@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Chats from "./pages/Chats";
-import Header from "./Component/Header";
+import Header from "./components/Header";
 import Code from "./pages/Code";
 function App() {
   return (
