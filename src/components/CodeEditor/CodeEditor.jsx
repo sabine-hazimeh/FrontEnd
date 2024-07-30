@@ -24,6 +24,7 @@ const CodeEditor = () => {
     <div className="custom-editor-container">
       <div className="editor-wrapper">
         <div className="language-selector ">
+          <div className="output-title">Language</div>
           <button className="lang-button">Python </button>
         </div>
         <Editor

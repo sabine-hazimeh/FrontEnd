@@ -19,13 +19,16 @@ section{
 /* customEditorStyles.css */
 .custom-editor-container {
   display: flex;
-  height: 100vh; /* Full viewport height */
-  width: 100%;
+  height: 85vh; /* Full viewport height */
+  width: 90%;
   border: 2px solid #ccc; /* Example border */
   border-radius: 8px; /* Rounded corners */
   padding: 10px; /* Padding inside the container */
   background: linear-gradient(#2b1055, #7597de);
   overflow: hidden;
+  margin: 5rem;
+  /* margin-left: 2rem;
+  margin-right: 2rem; */
 }
 
 .editor-wrapper {
@@ -33,8 +36,8 @@ section{
 }
 
 .language-selector {
-  margin-bottom: 1.6rem; /* Space between selector and editor */
-  width: fit-content;
+  /* margin-bottom: 1.6rem;  */
+  /* width: fit-content; */
   padding: 0.25rem;
   color: white;
 }
@@ -54,7 +57,11 @@ section{
 }
 
 .lang-button {
-  width: fit-content;
-  padding: 0.25rem;
-  background-color: rgba(28, 28, 28, 255);
+  margin-bottom: 16px;
+  border: 2px solid white;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.15rem;
 }

@@ -31,7 +31,12 @@ const Output = ({ editorRef, language }) => {
   return (
     <div className="output-container">
       <div className="output-title">Output</div>
-
+      <button
+        className={`output-button ${isLoading ? "loading" : ""}`}
+        onClick={runCode}
+      >
+        {isLoading ? "Running..." : "Run Code"}
+      </button>
       <div className={`output-box ${isError ? "error" : ""}`}>
         {isError ? (
           <div className="error-message">{errorMessage}</div>
@@ -45,12 +50,6 @@ const Output = ({ editorRef, language }) => {
           'Click "Run Code" to see the output here'
         )}
       </div>
-      <button
-        className={`output-button ${isLoading ? "loading" : ""}`}
-        onClick={runCode}
-      >
-        {isLoading ? "Running..." : "Run Code"}
-      </button>
     </div>
   );
 };
