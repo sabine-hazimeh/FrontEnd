@@ -20,6 +20,15 @@ function Header() {
         </li>
         <li>
           <NavLink
+            to="/chats"
+            exact
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+          >
+            Chats
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/login"
             className={({ isActive }) => (isActive ? "active" : undefined)}
           >

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./style.css";
-
+import { Link } from "react-router-dom";
 import moon from "../../images/moon.png";
 import stars from "../../images/stars.png";
 import mountainsBehind from "../../images/mountains_behind.png";
@@ -36,7 +36,7 @@ const Home = () => {
 
   return (
     <div>
-      <section>
+      <section className="section">
         <img src={stars} id="stars" ref={starsRef} alt="stars" />
         <img src={moon} id="moon" ref={moonRef} alt="moon" />
         <img
@@ -48,9 +48,11 @@ const Home = () => {
         <h2 id="text" ref={textRef}>
           SyntaxStudio
         </h2>
-        <a href="#sec" id="btn" ref={btnRef}>
+        {/* <a href="#sec" id="btn" ref={btnRef}> */}
+        <Link to="/code" id="btn">
           Get Started!
-        </a>
+        </Link>
+        {/* </a> */}
         <img
           src={mountainsFront}
           id="mountains_front"

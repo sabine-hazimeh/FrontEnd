@@ -5,6 +5,9 @@ import SignUp from "./pages/SignUp";
 import Chats from "./pages/Chats";
 import Header from "./components/Header";
 import Code from "./pages/Code";
+import PrivateRoute from "./components/PrivateRoute";
+import Admin from "./pages/Admin";
+
 function App() {
   return (
     <Router>
@@ -13,8 +16,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/chats" element={<Chats />} />
-        <Route path="/code" element={<Code />} />
+
+        <Route element={<PrivateRoute />}>
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/chats" element={<Chats />} />
+          <Route path="/code" element={<Code />} />
+        </Route>
       </Routes>
     </Router>
   );
