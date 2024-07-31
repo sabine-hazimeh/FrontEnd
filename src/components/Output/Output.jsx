@@ -18,12 +18,6 @@ const Output = ({ editorRef, language }) => {
       result.stderr ? setIsError(true) : setIsError(false);
     } catch (error) {
       console.log(error);
-      // toast({
-      //   title: "An error occurred.",
-      //   description: error.message || "Unable to run code",
-      //   status: "error",
-      //   duration: 6000,
-      // });
     } finally {
       setIsLoading(false);
     }

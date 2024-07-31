@@ -1,14 +1,14 @@
+
 .custom-editor-container {
   display: flex;
-  height: 85vh;
+  height: 85vh; 
   width: 90%;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
+  border: 2px solid #ccc; 
+  border-radius: 8px; 
+  padding: 10px; 
   background: linear-gradient(#2b1055, #7597de);
   overflow: hidden;
   margin: 5rem;
-  position: relative; /* Add position relative to the container */
 }
 
 .editor-wrapper {
@@ -40,4 +40,123 @@
   cursor: pointer;
   text-align: center;
   font-size: 1.15rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.savecode-btn, .download-btn {
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  color: whitesmoke;
+  transition: background-color 0.3s;
+  margin-top: 0.9rem;
+  margin-bottom: 13px;
+}
+
+.savecode-btn:hover, .download-btn:hover {
+  background-color:rgb(132, 67, 198);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #5663a2;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+.save-form {
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; 
+  background: none;
+}
+
+.modal-input {
+  width: 100%; 
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.modal-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 10px; 
+}
+
+.submit-btn, .cancel-btn {
+  flex: 1; 
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px ;
+  border-radius: 10px;
+  color: white;
+  background-color: #392668;
+  transition: background-color 0.3s;
+  box-sizing: border-box;
+}
+
+.submit-btn:hover, .cancel-btn:hover {
+  background-color: rgb(132, 67, 198);
+}
+
+
+.autocomplete-suggestions {
+  position: absolute;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  padding: 5px;
+  border-radius: 3px;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+.autocomplete-suggestions ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.autocomplete-suggestions li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.autocomplete-suggestions li:hover {
+  background-color: #333;
 }
