@@ -1,21 +1,15 @@
-/* .output-container {
-  width: 100%; 
-  border-left: none; 
-    display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
-} */
 
 .output-title {
   margin-bottom: 8px;
-  font-size: 1.125rem; /* Equivalent to fontSize="lg" in Chakra UI */
-  color: white;
+  font-size: 1.125rem; 
+  color: whitesmoke;
 }
 
 .output-button {
   margin-bottom: 16px;
-  border: 2px solid white;
-  color: white;
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  color: whitesmoke;
   padding: 0.5rem 1rem;
   cursor: pointer;
   text-align: center;
@@ -31,19 +25,19 @@
   height: 75vh;
   width: 100%;
   padding: 8px;
-  border: 1px solid white;
+  border: 1px solid whitesmoke;
   background-color: rgba(115, 115, 115, 0.288);
   color: whitesmoke;
   font-size: 18px;
   border-radius: 4px;
   overflow-y: auto;
   margin: 0;
-  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  box-sizing: border-box; 
 }
 
 .output-box.error {
-  color: #f56565; /* Equivalent to red.400 in Chakra UI */
-  border-color: #e53e3e; /* Equivalent to red.500 in Chakra UI */
+  color: #f56565; 
+  border-color: #e53e3e; 
 }
 
 .output-line {
@@ -51,5 +45,5 @@
 }
 
 .output-button:hover {
-  background-color: rgb(100, 100, 100);
+  background-color: rgb(132, 67, 198);
 }
