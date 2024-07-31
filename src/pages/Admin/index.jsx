@@ -4,12 +4,14 @@ import Papa from "papaparse";
 import * as XLSX from "xlsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaExclamationTriangle } from "react-icons/fa";
 import "./style.css";
 
 function Admin() {
   const [users, setUsers] = useState([]);
   const [file, setFile] = useState(null);
   const [fileKey, setFileKey] = useState(Date.now());
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -23,6 +25,7 @@ function Admin() {
         );
         setUsers(response.data.users);
       } catch (error) {
+        setError("Error fetching users. Only admin can see this page.");
         console.error("Error fetching users:", error);
       }
     };
@@ -35,7 +38,6 @@ function Admin() {
   };
 
   const handleFileUpload = async () => {
-    // toast.success("Users have been inserted successfully!");
     if (file) {
       const fileType = file.name.split(".").pop();
       let data = [];
@@ -87,30 +89,43 @@ function Admin() {
     <>
       <div className="admin-page">
         <div className="users-container">
-          <input
-            key={fileKey}
-            type="file"
-            onChange={handleFileChange}
-            style={{ display: "none" }}
-          />
-          <button
-            className="file-button"
-            onClick={() => document.querySelector('input[type="file"]').click()}
-          >
-            Choose File
-          </button>
-          <button className="button" onClick={handleFileUpload}>
-            Upload Users
-          </button>
+          {!error && (
+            <>
+              <input
+                key={fileKey}
+                type="file"
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+              />
+              <button
+                className="file-button"
+                onClick={() =>
+                  document.querySelector('input[type="file"]').click()
+                }
+              >
+                Choose File
+              </button>
+              <button className="button" onClick={handleFileUpload}>
+                Upload Users
+              </button>
+            </>
+          )}
 
-          <ul>
-            {users.map((user) => (
-              <li className="users" key={user.id}>
-                {user.name}
-                <small>{user.email}</small>
-              </li>
-            ))}
-          </ul>
+          {error ? (
+            <div className="error-message">
+              <FaExclamationTriangle size={50} />
+              <p>{error}</p>
+            </div>
+          ) : (
+            <ul>
+              {users.map((user) => (
+                <li className="users" key={user.id}>
+                  {user.name}
+                  <small>{user.email}</small>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
       <ToastContainer />

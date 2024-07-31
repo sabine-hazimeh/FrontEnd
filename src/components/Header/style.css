@@ -42,3 +42,12 @@ header ul li a:hover,
   background: #fff;
   color: #2b1055;
 }
+.logout-button {
+  background: none;
+  border: none;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  margin: 0;
+}
