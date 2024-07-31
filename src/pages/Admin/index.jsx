@@ -71,17 +71,41 @@ function Admin() {
   };
 
   const processRows = async (rows) => {
+    let allSuccess = true;
     try {
       for (let row of rows) {
         const { name, email, password } = row;
-        await axios.post("http://127.0.0.1:8000/api/register", {
-          name,
-          email,
-          password,
-        });
+
+        if (!name || !email || !password) {
+          console.error("Validation error: Missing required fields", row);
+          allSuccess = false;
+          continue;
+        }
+
+        try {
+          await axios.post("http://127.0.0.1:8000/api/register", {
+            name,
+            email,
+            password,
+          });
+        } catch (error) {
+          allSuccess = false;
+          if (error.response) {
+            console.error("Error importing user:", error.response.data);
+          } else {
+            console.error("Error importing user:", error.message);
+          }
+        }
+      }
+
+      if (allSuccess) {
+        toast.success("Users added successfully");
+      } else {
+        toast.error("Some users were not added.");
       }
     } catch (error) {
-      console.error("Error importing user:", error);
+      console.error("Error processing rows:", error);
+      toast.error("An error occurred while processing the file.");
     }
   };
 

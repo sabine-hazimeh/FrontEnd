@@ -39,7 +39,6 @@ function Header() {
         <li>
           <NavLink
             to="/"
-            exact
             className={({ isActive }) => (isActive ? "active" : undefined)}
           >
             Home
@@ -48,7 +47,6 @@ function Header() {
         <li>
           <NavLink
             to="/chats"
-            exact
             className={({ isActive }) => (isActive ? "active" : undefined)}
           >
             Chats
